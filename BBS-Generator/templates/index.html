@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Random Number Generator</h1>
+        <div class="attributes">
+            <div class="field">
+                <label for="seed">Seed:</label><br>
+                <input type="text" id="seed" value="{{ seed }}" readonly>
+            </div>
+            <div class="field">
+                <label for="p">p:</label><br>
+                <input type="text" id="p" value="{{ p }}" readonly>
+            </div>
+            <div class="field">
+                <label for="q">q:</label><br>
+                <input type="text" id="q" value="{{ q }}" readonly>
+            </div>
+            <div class="field">
+                <label for="M">M:</label><br>
+                <input type="text" id="M" value="{{ M }}" readonly>
+            </div>
+            <div class="field">
+                <label for="length">length:</label><br>
+                <input type="text" id="length" value="{{ length }}" readonly>
+            </div>
+        </div>
+        <div class="results">
+            <div class="field">
+                <label for="random_number">Random Number:</label><br>
+                <textarea type="text" id="random_number" readonly rows="6" cols="80">{{ random_number }}</textarea>
+            </div>
+            <div class="field">
+                <label for="random_binary">Random Binary:</label><br>
+                <textarea type="text" id="random_binary" readonly rows="6" cols="80">{{ random_binary }}</textarea>
+            </div>
+        </div>
+        <a href="{{ url_for('generate') }}" class="button"><button>Generate</button></a>
+
+        <div class="tests">
+            <div class="test">
+                <p>Single bits test</p>
+                {% with current_checked=single_bits_test %}
+                    {% include 'checkbox.html' %}
+                {% endwith %}
+            </div>
+           <div class="test">
+                <p>Long series test</p>
+                {% with current_checked=series_test %}
+                    {% include 'checkbox.html' %}
+                {% endwith %}
+            </div>
+            <div class="test">
+                <p>Series test</p>
+                {% with current_checked=long_series_test %}
+                    {% include 'checkbox.html' %}
+                {% endwith %}
+            </div>
+            <div class="test">
+                <p>Poker test</p>
+                {% with current_checked=poker_test %}
+                    {% include 'checkbox.html' %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

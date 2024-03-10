@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container {
+    text-align: center;
+}
+h1 {
+    color: #333;
+}
+.number {
+    /*font-size: 48px;
+    margin-top: 20px;*/
+    font-size: 2vw; /* Responsive font size based on viewport width */
+    margin-top: 2vh; /* Responsive margin */
+    color: #007bff;
+    word-wrap: break-word; /* Break long words */
+    white-space: nowrap; /* Prevent wrapping */
+    max-width: 90vw; /* Limit width to 90% of viewport width */
+    /*text-overflow: ellipsis; /* Show ellipsis for overflow */
+}
+.large_number {
+    font-size: 1vw; /* Responsive font size based on viewport width */
+    margin-top: 2vh; /* Responsive margin */
+    color: #007bff;
+    word-wrap: break-word; /* Break long words */
+    white-space: nowrap; /* Prevent wrapping */
+    max-width: 90vw; /* Limit width to 90% of viewport width */
+    /*text-overflow: ellipsis; /* Show ellipsis for overflow */
+}
+button {
+    background-color: #866efb;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #6955cc;
+}
+
+.tests {
+    display: flex;
+    justify-content: center;
+}
+
+.test {
+    flex: 1;
+    margin-right: 20px;
+}
