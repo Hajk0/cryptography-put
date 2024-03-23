@@ -1,8 +1,10 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
-@app.route('/', methods=['POST'])
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/rsa', methods=['POST'])
 def rsa():
