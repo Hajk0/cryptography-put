@@ -3,7 +3,7 @@ import sympy
 
 class Generator:
     @staticmethod
-    def find_primes(min: int, max: int, quantity: int): # TODO(implement own primalyty test algorithm)
+    def find_primes(min: int, max: int, quantity: int): # TODO(implement own primality test algorithm)
         primes = []
         for i in range(quantity):
             p = sympy.randprime(min, max)

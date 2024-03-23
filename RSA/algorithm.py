@@ -13,9 +13,9 @@ class Algorithm:
     def main(self):
         primes = Generator.find_primes(100, 500, 2)
         self.generate_keys(primes[0], primes[1])
-        message = 123
-        encrypted_message = self.encrypt(message)
-        decrypted_message = self.decrypt(encrypted_message)
+        message = 'Hello, World! This is a test message. I hope it works! :) 1234567890!@#$%^&*()_+{}|:"<>?~`-=[]\;\',./'
+        encrypted_message = self.encrypt_message(message, self.public_key)
+        decrypted_message = self.decrypt_message(encrypted_message, self.private_key)
         print("Message: ", message)
         print("Encrypted message: ", encrypted_message)
         print("Decrypted message: ", decrypted_message)
@@ -34,12 +34,27 @@ class Algorithm:
             generated_d += 1
         return generated_d
 
-    def encrypt(self, message: int):
-        return pow(message, self.public_key['e'], self.public_key['n'])
+    def encrypt(self, message: int, public_key: dict):
+        message_encrypted = pow(message, public_key['e'], public_key['n'])
+        return message_encrypted
 
-    def decrypt(self, message: int):
-        return pow(message, self.private_key['d'], self.private_key['n'])
-         
+    def decrypt(self, message: int, private_key: dict):
+        message_decrypted = pow(message, private_key['d'], private_key['n'])
+        return message_decrypted
+
+    def encrypt_message(self, message: str, public_key: dict):
+        message_encrypted = []
+        for letter in message:
+            letter_int = ord(letter)
+            message_encrypted.append(self.encrypt(letter_int, public_key))
+        return message_encrypted
+
+    def decrypt_message(self, message: str, private_key: dict):
+        message_decrypted = ''
+        for letter in message:
+            letter_decrypted = self.decrypt(letter, private_key)
+            message_decrypted += chr(letter_decrypted)
+        return message_decrypted
 
 if __name__ == '__main__':
     algorithm = Algorithm()
