@@ -4,21 +4,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="styles.css">
-        <title>Home</title>
+        <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
         <header>
             <h1>RSA Algorithm</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="encrypt.html">Encrypt</a></li>
-                    <li><a href="decrypt.html">Decrypt</a></li>
-                </ul>
-            </nav>
         </header>
         <main>
-            <button>Generate</button>
+            {% block content %}
+            {% endblock %}
         </main>
         
     </body>

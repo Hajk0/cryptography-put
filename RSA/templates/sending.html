@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <title>RSA Algorithm</title>
+    </head>
+    <body>
+        <header>
+            <h1>RSA Algorithm</h1>
+        </header>
+        <main>
+            <div class="container">
+                <form action="#" method="post">
+                    <input type="text" name="message" placeholder="Enter your message">
+                    <button type="submit">Encrypt</button>
+                </form>
+                <textarea readonly>{{ message }}</textarea>
+                <textarea readonly>{{ encrypted_message }}</textarea>
+                <textarea readonly>{{ decrypted_message }}</textarea>
+            </div>
+        </main>
+        
+    </body>
+</html>

@@ -11,7 +11,8 @@ class Algorithm:
         self.private_key = None
 
     def main(self):
-        primes = Generator.find_primes(100, 500, 2)
+        primes = Generator.find_primes3(10000, 50000, 2)
+        print("Primes: ", primes)
         self.generate_keys(primes[0], primes[1])
         message = 'Hello, World! This is a test message. I hope it works! :) 1234567890!@#$%^&*()_+{}|:"<>?~`-=[]\;\',./'
         encrypted_message = self.encrypt_message(message, self.public_key)
@@ -20,11 +21,23 @@ class Algorithm:
         print("Encrypted message: ", encrypted_message)
         print("Decrypted message: ", decrypted_message)
 
+    def main(self, message: str):
+        primes = Generator.find_primes3(1000, 5000, 2)
+        print("Primes: ", primes)
+        self.generate_keys(primes[0], primes[1])
+        encrypted_message = self.encrypt_message(message, self.public_key)
+        decrypted_message = self.decrypt_message(encrypted_message, self.private_key)
+        print("Message: ", message)
+        print("Encrypted message: ", encrypted_message)
+        print("Decrypted message: ", decrypted_message)
+        return message, encrypted_message, decrypted_message
+
     def generate_keys(self, p, q):
         self.n = p * q
         self.phi = (p - 1) * (q - 1)
         self.e = Generator.find_coprime(random.randint(1, self.phi), self.phi)
-        self.d = self.generate_d(100, 500)
+        self.d = self.generate_d(2, 2)
+        print("generate_d: ", self.d)
         self.public_key = {'e': self.e, 'n': self.n}
         self.private_key = {'d': self.d, 'n': self.n}
         
