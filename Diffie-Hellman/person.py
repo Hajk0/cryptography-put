@@ -16,4 +16,4 @@ class Person:
 
     def calc_k(self, Y: int, n: int):
         self.k = pow(Y, self.private_key, n)
-        print("k:", self.k)
+        return self.k
