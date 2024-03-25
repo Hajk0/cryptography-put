@@ -36,12 +36,12 @@ class DiffieHellman:
         print(Z_bis)
         
     def main_groups(self, group):
-        X = [0 for _ in range(len(group))]
-        for person in range(len(group)):
+        X = [0 for _ in range(len(group))] # init list
+        for person in range(len(group)): # calculate public keys
             X[person] = group[person].calc_X(g, n)
-        for i in range(len(group) - 1):
-            for j in range(len(group)):
-                sent = (j + i + 1) % len(group)
+        for i in range(len(group) - 1): # (each value have to be modified by every person) Alice -> Bob -> Cezary - number of arrows
+            for j in range(len(group)): # iterate through people
+                sent = (j + i + 1) % len(group) # statement to determine which value will be sent to and modified by given person
                 X[sent] = group[j].calc_k(X[sent], n)
         print(X)
         
