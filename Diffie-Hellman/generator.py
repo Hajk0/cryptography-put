@@ -51,7 +51,6 @@ class Generator:
         for i in range(2, n):
             for j in arr:
                 if pow(i, j, n) == 1:
-                    print("break")
                     break
                 elif arr[-1] == j:
                     roots.append(i)
