@@ -33,10 +33,12 @@ def generateBBS():
 
 
 def find_good_prime(x):
-    p,  = find_primes(x, x * 2, 1)
+    # p, = find_primes(x, x * 2, 1)
+    p,  = find_primes_sieve(x, x * 2, 1) # find_primes(x, x * 2, 1)
     print(p)
     while p % 4 != 3:
-        p,  = find_primes(x, x * 2, 1)
+        # p, = find_primes(x, x * 2, 1)
+        p,  = find_primes_sieve(x, x * 2, 1)# find_primes(x, x * 2, 1)
         print(p)
     print("Znalazło")
     return p
@@ -74,6 +76,28 @@ def find_primes(min: int, max: int, quantity: int):
     for i in range(quantity):
         p = random.choice(primes)
         while p in returned_primes:
+            p = random.choice(primes)
+        returned_primes.append(p)
+    return returned_primes
+
+
+def sieve_of_eratosthenes(n: int) -> list:
+    primes = [True for _ in range(n+1)]
+    p = 2
+    while p**2 <= n:
+        if primes[p]:
+            for i in range(p**2, n+1, p):
+                primes[i] = False
+        p += 1
+    return [p for p in range(2, n+1) if primes[p]]
+
+
+def find_primes_sieve(min: int, max: int, quantity: int):
+    primes = sieve_of_eratosthenes(max)
+    returned_primes = []
+    for i in range(quantity):
+        p = random.choice(primes)
+        while p in returned_primes or p < min:
             p = random.choice(primes)
         returned_primes.append(p)
     return returned_primes
