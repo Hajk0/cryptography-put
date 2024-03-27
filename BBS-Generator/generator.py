@@ -2,13 +2,14 @@ import random
 import sympy
 import sys
 import test
+from math import isqrt
 
 sys.set_int_max_str_digits(10000)
 
 def generateBBS():
     seed = random.randint(1, int(1e10))
-    x = random.randint(3 * 10**10, 3 * 10**11)
-    y = random.randint(4 * 10**11, 4 * 10**12)
+    x = random.randint(3 * 10**3, 3 * 10**4)  # (3 * 10**10, 3 * 10**11)
+    y = random.randint(4 * 10**4, 4 * 10**5)  # (4 * 10**11, 4 * 10**12)
 
     p = find_good_prime(x) # find prime number p such that p = 3 mod 4
     q = find_good_prime(y)
@@ -28,13 +29,16 @@ def generateBBS():
         output_bits += str(calculated_bit)
     print("Output bits: ", output_bits)
     print("Output: ", output)
-    return (output_bits, int(output), M, seed, p, q, number_length)
+    return (output_bits, int(output), seed, p, q, M, number_length)
 
 
 def find_good_prime(x):
-    p = sympy.nextprime(x)
+    p,  = find_primes(x, x * 2, 1)
+    print(p)
     while p % 4 != 3:
-        p = sympy.nextprime(p)
+        p,  = find_primes(x, x * 2, 1)
+        print(p)
+    print("Znalazło")
     return p
 
 
@@ -48,6 +52,31 @@ def find_coprime(x, y):
     while euklides(x, y) != 1:
         x += 1
     return x
+
+
+def is_prime(n: int) -> bool:
+    if n <= 3:
+        return n > 1
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    limit = isqrt(n)
+    for i in range(5, limit+1, 6):
+        if n % i == 0 or n % (i+2) == 0:
+            return False
+    return True
+
+
+def find_primes(min: int, max: int, quantity: int):
+    if min % 2 == 0:
+        min += 1
+    primes = [i for i in range(min, max, 2) if is_prime(i)]
+    returned_primes = []
+    for i in range(quantity):
+        p = random.choice(primes)
+        while p in returned_primes:
+            p = random.choice(primes)
+        returned_primes.append(p)
+    return returned_primes
 
 
 if __name__ == '__main__':
