@@ -10,17 +10,6 @@ class Algorithm:
         self.public_key = None
         self.private_key = None
 
-    def main(self):
-        primes = Generator.find_primes3(10000, 50000, 2)
-        print("Primes: ", primes)
-        self.generate_keys(primes[0], primes[1])
-        message = 'Hello, World! This is a test message. I hope it works! :) 1234567890!@#$%^&*()_+{}|:"<>?~`-=[]\;\',./'
-        encrypted_message = self.encrypt_message(message, self.public_key)
-        decrypted_message = self.decrypt_message(encrypted_message, self.private_key)
-        print("Message: ", message)
-        print("Encrypted message: ", encrypted_message)
-        print("Decrypted message: ", decrypted_message)
-
     def main(self, message: str):
         primes = Generator.find_primes3(1000, 5000, 2)
         print("Primes: ", primes)
@@ -70,5 +59,6 @@ class Algorithm:
         return message_decrypted
 
 if __name__ == '__main__':
+    message = 'Hello, World! This is a test message. I hope it works! :) 1234567890!@#$%^&*()_+{}|:"<>?~`-=[]\;\',./'
     algorithm = Algorithm()
-    algorithm.main()
+    algorithm.main(message)
