@@ -9,12 +9,11 @@ class Test:
         for i in range(length):
             if random_binary[i] == "0":
                 number_of_zeros += 1
-                number_of_ones = 0
             else:
                 number_of_ones += 1
-                number_of_zeros = 0
             if number_of_zeros >= max_numbers or number_of_ones >= max_numbers:
                 return False
+        print("Number of zeros: ", number_of_zeros)
         return True
 
     def series_test(self, random_binary: str, length: int) -> bool:
