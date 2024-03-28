@@ -25,10 +25,12 @@ class Algorithm:
         self.n = p * q
         self.phi = (p - 1) * (q - 1)
         self.e = Generator.find_coprime(random.randint(1, self.phi), self.phi)
-        self.d = self.generate_d(2, 2)
+        self.d = self.generate_d(2, 2 * 10 ** 6)
         print("generate_d: ", self.d)
         self.public_key = {'e': self.e, 'n': self.n}
         self.private_key = {'d': self.d, 'n': self.n}
+        print("Public key: ", self.public_key)
+        print("Private key: ", self.private_key)
         
     def generate_d(self, min: int, max: int):
         generated_d = random.randint(min, max)
