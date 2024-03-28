@@ -44,10 +44,12 @@ class Generator:
         roots = []
         x = n - 1
         factors = Generator.prime_factors(x)
+        print("x: ", x)
         print("factors: ", factors)
         arr = []
-        for i in factors:
-            arr.append(x // i)
+        #for i in factors:
+        #    arr.append(x // i)
+        arr = factors
         for i in range(2, n):
             for j in arr:
                 if pow(i, j, n) == 1:
